@@ -15,6 +15,6 @@
    "not configured" notice instead of the login form.
    ============================================================ */
 window.REV_NATION_CONFIG = {
-  SUPABASE_URL: "PASTE_NEW_PROJECT_URL_HERE",        // e.g. https://abcdefgh.supabase.co
-  SUPABASE_ANON_KEY: "PASTE_NEW_ANON_PUBLIC_KEY_HERE" // Project Settings → API → anon public key
+  SUPABASE_URL: "https://smgftzzuzaylczvszpii.supabase.co",        // e.g. https://abcdefgh.supabase.co
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtZ2Z0enp1emF5bGN6dnN6cGlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEyOTkzNTksImV4cCI6MjEwNjg3NTM1OX0.ghqIhpR4BCEAGnzEYEdAWRmiqPxalM8NYv0IpM9SYes" // Project Settings → API → anon public key
 };
