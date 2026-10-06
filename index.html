@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajay | Digital Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.25/dist/lenis.css">
+<style>
+:root {
+  --bg: #050505;
+  --ink: #f7f7f7;
+  --ink-dim: rgba(255, 255, 255, 0.4);
+  --line: rgba(255, 255, 255, 0.08);
+  --sans: 'Inter', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+a, button { text-decoration: none; color: inherit; background: transparent; border: none; cursor: none; }
+#cursor {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+}
+#cursor-follower {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ink-dim);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+#cursor.active ~ #cursor-follower {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.05);
+}
+  #preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vw;
+}
+#loader-bar-bg {
+  width: 100%;
+  max-width: 300px;
+  height: 1px;
+  background: var(--line);
+  margin-bottom: 30px;
+}
+#loader-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--ink);
+}
+#boot-log {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--ink-dim);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#media-engine {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.media-item {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: brightness(0.3);
+}
+.media-item.active {
+  opacity: 1;
+  transform: scale(1);
+}
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-title {
+  font-family: var(--sans);
+  font-size: clamp(40px, 6vw, 85px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 800px;
+}
+.hero-subtitle {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--ink-dim);
+  margin-top: 40px;
+}
+.project-list {
+  margin-top: 10vh;
+  border-top: 1px solid var(--line);
+}
+.project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
+  border-bottom: 1px solid var(--line);
+  transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-item:hover {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+.project-title {
+  font-family: var(--sans);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+}
+.project-meta {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--ink-dim);
+}
+.footer {
+  margin-top: 15vh;
+  padding: 50px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--ink-dim);
+}
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+.footer-link {
+  transition: color 0.4s ease;
+}
+.footer-link:hover {
+  color: var(--ink);
+}
+</style>
+</head>
+<body>
+  <div id="cursor"></div>
+<div id="cursor-follower"></div>
+
+<div id="preloader">
+  <div id="loader-bar-bg">
+    <div id="loader-bar"></div>
+  </div>
+  <div id="boot-log">
+    <span class="log-line">INITIALIZING SECURE PROTOCOLS...</span>
+    <span class="log-line">ESTABLISHING CONNECTION...</span>
+    <span class="log-line">ASSEMBLING DIGITAL ARCHITECTURE...</span>
+  </div>
+</div>
+
+<div id="media-engine">
+  <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?q=80&w=1920&auto=format&fit=crop" id="media-revnation" class="media-item" alt="">
+  <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1920&auto=format&fit=crop" id="media-shikhwa" class="media-item" alt="">
+  <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1920&auto=format&fit=crop" id="media-svsolar" class="media-item" alt="">
+  <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1920&auto=format&fit=crop" id="media-weather" class="media-item" alt="">
+</div>
+
+<div class="container">
+  <main>
+    <section class="hero">
+      <h1 class="hero-title">Architecting digital spaces for premium brands.</h1>
+      <p class="hero-subtitle">Ajay &mdash; Independent Digital Architect</p>
+    </section>
+
+    <section class="project-list">
+      <a href="/revnation/" class="project-item magnetic" data-media="media-revnation">
+        <h2 class="project-title">Rev Nation</h2>
+        <span class="project-meta">Automotive Studio</span>
+      </a>
+
+      <a href="/shikhwa-main/" class="project-item magnetic" data-media="media-shikhwa">
+        <h2 class="project-title">Shikhwa</h2>
+        <span class="project-meta">Teaching Platform</span>
+      </a>
+
+      <a href="/svsolar-main/" class="project-item magnetic" data-media="media-svsolar">
+        <h2 class="project-title">SV Solar</h2>
+        <span class="project-meta">Energy Solutions</span>
+      </a>
+
+      <a href="/weather-main/" class="project-item magnetic" data-media="media-weather">
+        <h2 class="project-title">Weather Intelligence</h2>
+        <span class="project-meta">Data Application</span>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>&copy; 2026 Ajay. All Rights Reserved.</div>
+    <div class="footer-links">
+      <a href="#" class="footer-link magnetic">Work</a>
+      <a href="#" class="footer-link magnetic">Studio</a>
+      <a href="#" class="footer-link magnetic">Inquiries</a>
+    </div>
+  </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'F12' || e.keyCode === 123) e.preventDefault();
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) e.preventDefault();
+    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(e.key)) e.preventDefault();
+  });
+
+  const lenis = new Lenis({ 
+    duration: 1.2, 
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+    smooth: true 
+  });
+  
+  function raf(time) { 
+    lenis.raf(time); 
+    requestAnimationFrame(raf); 
+  }
+  requestAnimationFrame(raf);
+
+  const cursor = document.getElementById('cursor');
+  const cursorFollower = document.getElementById('cursor-follower');
+  const interactables = document.querySelectorAll('a, .magnetic');
+
+  window.addEventListener('mousemove', e => {
+    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+    gsap.to(cursorFollower, { x: e.clientX, y: e.clientY, duration: 0.4 });
+  });
+
+  interactables.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+  });
+
+  const magnetics = document.querySelectorAll('.magnetic');
+  
+  magnetics.forEach(mag => {
+    mag.addEventListener('mousemove', e => {
+      const rect = mag.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) * 0.2;
+      const y = (e.clientY - rect.top - rect.height / 2) * 0.2;
+      gsap.to(mag, { x, y, duration: 0.5, ease: 'power2.out' });
+    });
+    mag.addEventListener('mouseleave', () => {
+      gsap.to(mag, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+    });
+  });
+
+  const projectItems = document.querySelectorAll('.project-item');
+  const mediaItems = document.querySelectorAll('.media-item');
+
+  projectItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const targetId = item.getAttribute('data-media');
+      mediaItems.forEach(img => img.classList.remove('active'));
+      const targetMedia = document.getElementById(targetId);
+      if (targetMedia) targetMedia.classList.add('active');
+    });
+
+    item.addEventListener('mouseleave', () => {
+      mediaItems.forEach(img => img.classList.remove('active'));
+    });
+  });
+
+  const tl = gsap.timeline();
+  tl.to('#loader-bar', { width: '100%', duration: 1.4, ease: 'power3.inOut' })
+    .fromTo('.log-line', { opacity: 0, y: 5 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.15 }, "-=0.8")
+    .to('#preloader', { opacity: 0, duration: 0.8, delay: 0.4, onComplete: () => {
+      document.getElementById('preloader').style.display = 'none';
+    }});
+});
+</script>
+</body>
+</html>
+shyam

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>SeatScope — guides</title>
+  <link>https://ajaybuilds.in/jee/blog/</link>
+  <atom:link href="https://ajaybuilds.in/jee/rss.xml" rel="self" type="application/rss+xml"/>
+  <description>Search every institute in the official CSAB 2026 release, see the published opening ranks for each branch, and check a seat against real round-to-round movement — with the sample size and the uncertainty stated, never a made-up percentage.</description>
+  <language>en-IN</language>
+  <lastBuildDate>Fri, 28 Aug 2026 06:14:12 GMT</lastBuildDate>
+  <item>
+    <title>Home state, other state, all India: which quota your rank is competing in</title>
+    <link>https://ajaybuilds.in/jee/blog/home-state-other-state-all-india-which-quota-your-rank-is-competing-in/</link>
+    <guid isPermaLink="true">https://ajaybuilds.in/jee/blog/home-state-other-state-all-india-which-quota-your-rank-is-competing-in/</guid>
+    <pubDate>Mon, 24 Aug 2026 09:00:00 GMT</pubDate>
+    <description>NITs split most seats into home-state and other-state quotas. Which one you are in changes the number you should be reading — often by thousands of ranks.</description>
+    <category>quota</category>
+    <category>csab</category>
+    <category>cutoffs</category>
+  </item>
+  <item>
+    <title>Float, freeze or surrender: the decision, without the folklore</title>
+    <link>https://ajaybuilds.in/jee/blog/float-freeze-or-surrender-the-decision-without-the-folklore/</link>
+    <guid isPermaLink="true">https://ajaybuilds.in/jee/blog/float-freeze-or-surrender-the-decision-without-the-folklore/</guid>
+    <pubDate>Fri, 21 Aug 2026 09:00:00 GMT</pubDate>
+    <description>What each option actually does to the seat you are holding, what it risks, and the three questions that settle the choice faster than any advice thread.</description>
+    <category>counselling</category>
+    <category>csab</category>
+    <category>decisions</category>
+  </item>
+  <item>
+    <title>What rank drift is, and why it beats last year's cutoff</title>
+    <link>https://ajaybuilds.in/jee/blog/what-rank-drift-is-and-why-it-beats-last-years-cutoff/</link>
+    <guid isPermaLink="true">https://ajaybuilds.in/jee/blog/what-rank-drift-is-and-why-it-beats-last-years-cutoff/</guid>
+    <pubDate>Tue, 18 Aug 2026 09:00:00 GMT</pubDate>
+    <description>Drift is how far a seat's closing rank moves between counselling rounds. It is measurable, it is directional, and it is a better guide than a single…</description>
+    <category>drift</category>
+    <category>method</category>
+    <category>csab</category>
+  </item>
+  <item>
+    <title>Opening rank vs closing rank: what each one can actually prove</title>
+    <link>https://ajaybuilds.in/jee/blog/opening-rank-vs-closing-rank-what-each-one-can-actually-prove/</link>
+    <guid isPermaLink="true">https://ajaybuilds.in/jee/blog/opening-rank-vs-closing-rank-what-each-one-can-actually-prove/</guid>
+    <pubDate>Fri, 14 Aug 2026 09:00:00 GMT</pubDate>
+    <description>An opening rank is one-sided evidence. It can prove a seat was within reach and it can never prove one was out of reach. Here is why, and how to use it…</description>
+    <category>method</category>
+    <category>cutoffs</category>
+    <category>csab</category>
+  </item>
+</channel>
+</rss>

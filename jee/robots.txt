@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /jee/
+# The admin is a private editor. It is noindex as well; this is the belt to that
+# brace, because a disallowed path is never fetched in the first place.
+Disallow: /jee/admin/
+
+# This site is served from /jee/, and a robots.txt is only read at the
+# domain root. Copy the two rules above into the root robots.txt — this file is
+# a record of what they should say, not a file any crawler will fetch.
+
+Sitemap: https://ajaybuilds.in/jee/sitemap.xml
